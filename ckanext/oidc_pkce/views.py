@@ -50,7 +50,6 @@ def login():
     params = {
         "client_id": config.client_id(),
         "redirect_uri": config.redirect_url(),
-        "scope": config.scope(),
         "state": state,
         "code_challenge": utils.code_challenge(verifier),
         "code_challenge_method": "S256",
