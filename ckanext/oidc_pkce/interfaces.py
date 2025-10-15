@@ -10,6 +10,7 @@ import ckan.plugins.toolkit as tk
 from ckan import model
 from ckan.logic.action.create import _get_random_username_from_email
 from ckan.plugins import Interface
+from sqlalchemy import Integer
 
 from . import config, signals
 
