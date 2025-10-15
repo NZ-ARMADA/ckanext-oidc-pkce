@@ -23,15 +23,6 @@ class IOidcPkce(Interface):
     def get_oidc_user(self, userinfo: dict[str, Any]) -> Optional[model.User]:
         q = model.Session.query(model.User)
 
-        user = q.filter(
-            model.User.plugin_extras["oidc_pkce"]["id"].astext
-            == str(userinfo["id"])
-        ).one_or_none()
-
-        if user:
-            signals.user_exist.send(user.id)
-            return user
-
         users = q.filter(
             model.User.email.ilike(userinfo["email"])
         ).all()

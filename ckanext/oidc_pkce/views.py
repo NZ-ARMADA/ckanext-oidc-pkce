@@ -160,7 +160,7 @@ def callback():
     came_from = session.pop(SESSION_CAME_FROM, None)
 
     return tk.redirect_to(
-        came_from or tk.config.get("ckan.route_after_login", "dashboard.index")
+        came_from or tk.config.get("ckan.auth.route_after_login", "dashboard.index")
     )
 
 
