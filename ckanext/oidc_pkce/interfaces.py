@@ -24,8 +24,8 @@ class IOidcPkce(Interface):
         q = model.Session.query(model.User)
 
         user = q.filter(
-            model.User.plugin_extras["oidc_pkce"]["id"].astext.cast(Integer)
-            == userinfo["id"]
+            model.User.plugin_extras["oidc_pkce"]["id"].astext
+            == str(userinfo["id"])
         ).one_or_none()
 
         if user:
@@ -84,7 +84,7 @@ class IOidcPkce(Interface):
         }
 
         if config.same_id():
-            data["id"] = userinfo["id"]
+            data["id"] = str(userinfo["id"])
 
         return data
 
