@@ -139,6 +139,7 @@ def callback():
         config.userinfo_url(),
         headers={"Authorization": f"Bearer {access_token}"},
     ).json()
+    log.error("Userinfo: %s", userinfo)
 
     userinfo["access_token"] = access_token
 
