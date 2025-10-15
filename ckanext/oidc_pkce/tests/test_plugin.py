@@ -21,7 +21,7 @@ class MockUser(object):
         self.is_authenticated = True if name else False
         if oidc_enabled:
             self.plugin_extras = {'oidc_pkce': {
-                'sub': 1, 'name': name, 'email': 'test@localhost'
+                'id': 1, 'name': name, 'email': 'test@localhost'
             }}
 
 

@@ -132,7 +132,7 @@ def error_redirect() -> Optional[str]:
 
 
 def same_id() -> bool:
-    """Use SSO `sub` as CKAN UserID."""
+    """Use SSO `id` as CKAN UserID."""
     return tk.asbool(tk.config.get(CONFIG_SAME_ID, DEFAULT_SAME_ID))
 
 

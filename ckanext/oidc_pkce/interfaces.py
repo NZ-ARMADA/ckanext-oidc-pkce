@@ -23,8 +23,8 @@ class IOidcPkce(Interface):
         q = model.Session.query(model.User)
 
         user = q.filter(
-            model.User.plugin_extras["oidc_pkce"]["sub"].astext
-            == userinfo["sub"]
+            model.User.plugin_extras["oidc_pkce"]["id"].astext
+            == userinfo["id"]
         ).one_or_none()
 
         if user:
@@ -78,12 +78,12 @@ class IOidcPkce(Interface):
             "email": userinfo["email"],
             "name": _get_random_username_from_email(userinfo["email"]),
             "password": secrets.token_urlsafe(60) + "1A!a_",
-            "fullname": userinfo["name"],
+            "fullname": f"{userinfo['first_name']} {userinfo['last_name']}",
             "plugin_extras": self.oidc_info_into_plugin_extras(userinfo),
         }
 
         if config.same_id():
-            data["id"] = userinfo["sub"]
+            data["id"] = userinfo["id"]
 
         return data
 
