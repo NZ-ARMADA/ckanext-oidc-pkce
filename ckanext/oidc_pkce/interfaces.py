@@ -23,7 +23,7 @@ class IOidcPkce(Interface):
         q = model.Session.query(model.User)
 
         user = q.filter(
-            model.User.plugin_extras["oidc_pkce"]["id"]
+            model.User.plugin_extras["oidc_pkce"]["id"].astext.cast(Integer)
             == userinfo["id"]
         ).one_or_none()
 
